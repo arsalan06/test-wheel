@@ -1,0 +1,128 @@
+[
+  {
+    "id": "1",
+    "name": "BBS CH-R II",
+    "brandId": "bbs",
+    "description": "Satin Black with Stainless Steel Rim",
+    "images": [
+      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300"
+    ],
+    "finishes": ["Satin Black", "Silver", "Gold"],
+    "sizes": ["18x8", "19x8.5", "20x9"],
+    "price": 485,
+    "pcd": "5x112",
+    "offsetMin": 25,
+    "offsetMax": 45,
+    "centerBore": 66.6,
+    "stock": 12,
+    "rating": 4.8,
+    "reviewCount": 24,
+    "isNew": true,
+    "financeAvailable": true
+  },
+  {
+    "id": "2",
+    "name": "OZ Superturismo GT",
+    "brandId": "oz",
+    "description": "Race White with Red Lettering",
+    "images": [
+      "https://pixabay.com/get/gf602187d46c5c0b5a42c624da685303f08febebc90845adc2ab52c45dff4e021638d411c8620fb518a317fc667ccca8545374ff2378977b2afb954d5bca79472_1280.jpg"
+    ],
+    "finishes": ["Race White", "Matt Black", "Anthracite"],
+    "sizes": ["17x7.5", "18x8", "19x8.5"],
+    "price": 325,
+    "pcd": "5x100",
+    "offsetMin": 35,
+    "offsetMax": 48,
+    "centerBore": 68.0,
+    "stock": 3,
+    "rating": 4.6,
+    "reviewCount": 18,
+    "isNew": false,
+    "financeAvailable": false
+  },
+  {
+    "id": "3",
+    "name": "Vossen CV3-R",
+    "brandId": "vossen",
+    "description": "Gloss Graphite Machined",
+    "images": [
+      "https://pixabay.com/get/g764b2253d937a792221c545ef6d39abb80662056452b16b82fb369deda81d4cbd996a21711b661692f2fd515fd9d3583a7d813654d463302ad4f14247d262a69_1280.jpg"
+    ],
+    "finishes": ["Gloss Graphite", "Matte Black", "Silver"],
+    "sizes": ["19x8.5", "19x9.5", "20x10"],
+    "price": 745,
+    "pcd": "5x120",
+    "offsetMin": 20,
+    "offsetMax": 35,
+    "centerBore": 72.6,
+    "stock": 8,
+    "rating": 5.0,
+    "reviewCount": 31,
+    "isNew": false,
+    "financeAvailable": true
+  },
+  {
+    "id": "4",
+    "name": "HRE P111SC",
+    "brandId": "hre",
+    "description": "Satin Charcoal",
+    "images": [
+      "https://pixabay.com/get/ge9675550ea05298b8bcb14b4120f6dc677d65c479af9a7508e9eaf0326d420cf11eb258c52d1f492ea5ccb50b7727cc90b00dd0fcc1f45b6c89c6b6a82bf86a8_1280.jpg"
+    ],
+    "finishes": ["Satin Charcoal", "Gloss Black", "Brushed"],
+    "sizes": ["20x9", "20x10.5", "21x12"],
+    "price": 1240,
+    "pcd": "5x114.3",
+    "offsetMin": 15,
+    "offsetMax": 30,
+    "centerBore": 70.3,
+    "stock": 0,
+    "rating": 5.0,
+    "reviewCount": 12,
+    "isNew": false,
+    "financeAvailable": true
+  },
+  {
+    "id": "5",
+    "name": "Enkei RPF1",
+    "brandId": "enkei",
+    "description": "Matte Black",
+    "images": [
+      "https://pixabay.com/get/gb23364a5ea198b44c5493c5f6a07efea1e859e8172fe5eb3936387dc8e97a4e2e3b96933fa0697f69bf723ad2a71144fa62e576116410ff113c8d31c22338541_1280.jpg"
+    ],
+    "finishes": ["Matte Black", "Silver", "White"],
+    "sizes": ["17x9", "18x9.5", "18x10.5"],
+    "price": 225,
+    "pcd": "5x114.3",
+    "offsetMin": 12,
+    "offsetMax": 38,
+    "centerBore": 73.1,
+    "stock": 15,
+    "rating": 4.7,
+    "reviewCount": 67,
+    "isNew": false,
+    "financeAvailable": false
+  },
+  {
+    "id": "6",
+    "name": "Rays TE37 Ultra",
+    "brandId": "rays",
+    "description": "Diamond Silver",
+    "images": [
+      "https://pixabay.com/get/g279279a1be8d101235047fbb0b00c1c4ee9622d218b18edc39abbd562792c74d387e6b2e4a612dc55b931f2cd3123547c548a6b61e781c34356cac7ba5cb360b_1280.jpg"
+    ],
+    "finishes": ["Diamond Silver", "Bronze", "White"],
+    "sizes": ["18x9.5", "18x10.5"],
+    "price": 890,
+    "pcd": "5x114.3",
+    "offsetMin": 12,
+    "offsetMax": 22,
+    "centerBore": 73.1,
+    "stock": 6,
+    "rating": 5.0,
+    "reviewCount": 45,
+    "isNew": false,
+    "financeAvailable": true
+  }
+]

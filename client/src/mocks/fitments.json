@@ -1,0 +1,142 @@
+[
+  {
+    "id": "1",
+    "make": "BMW",
+    "model": "M3",
+    "year": 2020,
+    "engine": "Competition",
+    "wheelSpecs": {
+      "frontSize": "19x9.5",
+      "rearSize": "19x10.5",
+      "pcd": "5x120",
+      "offsetRange": "22-35",
+      "centerBore": 72.6
+    }
+  },
+  {
+    "id": "2",
+    "make": "BMW",
+    "model": "M3",
+    "year": 2019,
+    "engine": "Standard",
+    "wheelSpecs": {
+      "frontSize": "19x9",
+      "rearSize": "19x10",
+      "pcd": "5x120",
+      "offsetRange": "25-35",
+      "centerBore": 72.6
+    }
+  },
+  {
+    "id": "3",
+    "make": "BMW",
+    "model": "3 Series",
+    "year": 2020,
+    "engine": "320i",
+    "wheelSpecs": {
+      "frontSize": "18x8",
+      "rearSize": "18x8",
+      "pcd": "5x120",
+      "offsetRange": "30-45",
+      "centerBore": 72.6
+    }
+  },
+  {
+    "id": "4",
+    "make": "Audi",
+    "model": "A4",
+    "year": 2019,
+    "engine": "2.0T",
+    "wheelSpecs": {
+      "frontSize": "18x8",
+      "rearSize": "18x8",
+      "pcd": "5x112",
+      "offsetRange": "35-45",
+      "centerBore": 66.6
+    }
+  },
+  {
+    "id": "5",
+    "make": "Audi",
+    "model": "RS4",
+    "year": 2020,
+    "engine": "2.9T",
+    "wheelSpecs": {
+      "frontSize": "19x8.5",
+      "rearSize": "19x9.5",
+      "pcd": "5x112",
+      "offsetRange": "28-40",
+      "centerBore": 66.6
+    }
+  },
+  {
+    "id": "6",
+    "make": "Mercedes-Benz",
+    "model": "C-Class",
+    "year": 2020,
+    "engine": "C300",
+    "wheelSpecs": {
+      "frontSize": "18x8",
+      "rearSize": "18x8.5",
+      "pcd": "5x112",
+      "offsetRange": "32-48",
+      "centerBore": 66.6
+    }
+  },
+  {
+    "id": "7",
+    "make": "Mercedes-Benz",
+    "model": "AMG GT",
+    "year": 2019,
+    "engine": "GT S",
+    "wheelSpecs": {
+      "frontSize": "19x9.5",
+      "rearSize": "19x11.5",
+      "pcd": "5x112",
+      "offsetRange": "25-40",
+      "centerBore": 66.6
+    }
+  },
+  {
+    "id": "8",
+    "make": "Volkswagen",
+    "model": "Golf",
+    "year": 2020,
+    "engine": "GTI",
+    "wheelSpecs": {
+      "frontSize": "18x7.5",
+      "rearSize": "18x7.5",
+      "pcd": "5x112",
+      "offsetRange": "45-55",
+      "centerBore": 57.1
+    }
+  },
+  {
+    "id": "9",
+    "make": "Ford",
+    "model": "Mustang",
+    "year": 2020,
+    "engine": "GT",
+    "wheelSpecs": {
+      "frontSize": "19x9.5",
+      "rearSize": "19x10.5",
+      "pcd": "5x114.3",
+      "offsetRange": "35-45",
+      "centerBore": 70.3
+    }
+  },
+  {
+    "id": "10",
+    "make": "Toyota",
+    "model": "Supra",
+    "year": 2020,
+    "engine": "3.0T",
+    "wheelSpecs": {
+      "frontSize": "19x9",
+      "rearSize": "19x10.5",
+      "pcd": "5x112",
+      "offsetRange": "25-35",
+      "centerBore": 66.6
+    }
+  }
+]

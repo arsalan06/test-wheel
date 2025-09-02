@@ -1,0 +1,1526 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WheelHub - Premium Automotive Wheels & Fitment</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&family=Roboto+Mono:wght@400;500&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    borderRadius: {
+                        lg: "var(--radius)",
+                        md: "calc(var(--radius) - 2px)",
+                        sm: "calc(var(--radius) - 4px)",
+                    },
+                    colors: {
+                        background: "var(--background)",
+                        foreground: "var(--foreground)",
+                        card: {
+                            DEFAULT: "var(--card)",
+                            foreground: "var(--card-foreground)",
+                        },
+                        primary: {
+                            DEFAULT: "var(--primary)",
+                            foreground: "var(--primary-foreground)",
+                        },
+                        secondary: {
+                            DEFAULT: "var(--secondary)",
+                            foreground: "var(--secondary-foreground)",
+                        },
+                        muted: {
+                            DEFAULT: "var(--muted)",
+                            foreground: "var(--muted-foreground)",
+                        },
+                        accent: {
+                            DEFAULT: "var(--accent)",
+                            foreground: "var(--accent-foreground)",
+                        },
+                        destructive: {
+                            DEFAULT: "var(--destructive)",
+                            foreground: "var(--destructive-foreground)",
+                        },
+                        border: "var(--border)",
+                        input: "var(--input)",
+                        ring: "var(--ring)",
+                    },
+                    fontFamily: {
+                        sans: ["Roboto", "sans-serif"],
+                        mono: ["Roboto Mono", "monospace"],
+                    }
+                },
+            }
+        };
+    </script>
+    <style>
+        :root {
+            --background: hsl(210 40% 98%);
+            --foreground: hsl(222.2 84% 4.9%);
+            --card: hsl(0 0% 100%);
+            --card-foreground: hsl(222.2 84% 4.9%);
+            --primary: hsl(210 83% 53%);
+            --primary-foreground: hsl(210 40% 98%);
+            --secondary: hsl(210 40% 46%);
+            --secondary-foreground: hsl(210 40% 98%);
+            --muted: hsl(210 40% 96%);
+            --muted-foreground: hsl(215.4 16.3% 46.9%);
+            --accent: hsl(36 100% 50%);
+            --accent-foreground: hsl(210 40% 98%);
+            --destructive: hsl(0 84.2% 60.2%);
+            --destructive-foreground: hsl(210 40% 98%);
+            --border: hsl(214.3 31.8% 91.4%);
+            --input: hsl(214.3 31.8% 91.4%);
+            --ring: hsl(210 83% 53%);
+            --radius: 8px;
+        }
+
+        .dark {
+            --background: hsl(222.2 84% 4.9%);
+            --foreground: hsl(210 40% 98%);
+            --card: hsl(222.2 84% 6%);
+            --card-foreground: hsl(210 40% 98%);
+            --primary: hsl(210 83% 53%);
+            --primary-foreground: hsl(210 40% 98%);
+            --secondary: hsl(217.2 32.6% 17.5%);
+            --secondary-foreground: hsl(210 40% 98%);
+            --muted: hsl(217.2 32.6% 17.5%);
+            --muted-foreground: hsl(215 20.2% 65.1%);
+            --accent: hsl(36 100% 50%);
+            --accent-foreground: hsl(222.2 84% 4.9%);
+            --destructive: hsl(0 62.8% 30.6%);
+            --destructive-foreground: hsl(210 40% 98%);
+            --border: hsl(217.2 32.6% 17.5%);
+            --input: hsl(217.2 32.6% 17.5%);
+            --ring: hsl(210 83% 53%);
+        }
+
+        * {
+            border-color: hsl(var(--border));
+        }
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: hsl(var(--background));
+            color: hsl(var(--foreground));
+        }
+
+        .custom-shadow {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+        }
+
+        .hero-gradient {
+            background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--secondary)) 100%);
+        }
+
+        .wheel-card {
+            transition: all 0.3s ease;
+        }
+
+        .wheel-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        .testimonial-card {
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .brand-marquee {
+            animation: scroll 30s linear infinite;
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        .filter-drawer {
+            transform: translateX(-100%);
+            transition: transform 0.3s ease;
+        }
+
+        .filter-drawer.open {
+            transform: translateX(0);
+        }
+
+        .mobile-nav {
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .mobile-nav.open {
+            transform: translateY(0);
+        }
+    </style>
+</head>
+
+<body class="bg-background text-foreground">
+    <!-- @COMPONENT: TopBar [contact info, location, dark mode toggle] -->
+    <div class="hidden lg:block bg-muted text-muted-foreground text-sm py-2">
+        <div class="max-w-7xl mx-auto px-4 flex justify-between items-center">
+            <div class="flex items-center space-x-6">
+                <div class="flex items-center space-x-2">
+                    <span class="material-icons text-sm">phone</span>
+                    <span>0800 123 4567</span>
+                </div>
+                <div class="flex items-center space-x-2">
+                    <span class="material-icons text-sm">location_on</span>
+                    <span>Find Store Near You</span>
+                </div>
+            </div>
+            <div class="flex items-center space-x-4">
+                <div class="flex items-center space-x-2">
+                    <span class="material-icons text-sm">schedule</span>
+                    <span>Mon-Fri 8AM-6PM, Sat 9AM-5PM</span>
+                </div>
+                <button 
+                    id="theme-toggle"
+                    class="flex items-center space-x-1 px-3 py-1 rounded-md hover:bg-background transition-colors"
+                    data-event="click:toggleTheme">
+                    <span class="material-icons text-sm">dark_mode</span>
+                    <span>Dark</span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <!-- @END_COMPONENT: TopBar -->
+
+    <!-- @COMPONENT: Header [main navigation, search, basket] -->
+    <header class="bg-card shadow-sm sticky top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex items-center justify-between h-16 lg:h-20">
+                <!-- Logo -->
+                <div class="flex items-center space-x-4">
+                    <button class="lg:hidden" id="mobile-menu-toggle" data-event="click:toggleMobileMenu">
+                        <span class="material-icons">menu</span>
+                    </button>
+                    <div class="flex items-center space-x-2">
+                        <div class="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
+                            <span class="material-icons text-primary-foreground text-lg">track_changes</span>
+                        </div>
+                        <span class="text-xl font-bold text-foreground">WheelHub</span>
+                    </div>
+                </div>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden lg:flex items-center space-x-8">
+                    <a href="#" class="text-foreground hover:text-primary transition-colors font-medium">Home</a>
+                    <a href="#shop" class="text-foreground hover:text-primary transition-colors font-medium">Shop Wheels</a>
+                    <a href="#fitment" class="text-foreground hover:text-primary transition-colors font-medium">Fitment Finder</a>
+                    <a href="#services" class="text-foreground hover:text-primary transition-colors font-medium">Services</a>
+                    <a href="#gallery" class="text-foreground hover:text-primary transition-colors font-medium">Gallery</a>
+                    <a href="#about" class="text-foreground hover:text-primary transition-colors font-medium">About</a>
+                </nav>
+
+                <!-- Search & Actions -->
+                <div class="flex items-center space-x-4">
+                    <div class="hidden md:flex items-center bg-muted rounded-lg px-3 py-2 w-64">
+                        <span class="material-icons text-muted-foreground mr-2">search</span>
+                        <input 
+                            type="text" 
+                            placeholder="Search wheels..." 
+                            class="bg-transparent flex-1 outline-none text-sm"
+                            data-bind="searchQuery">
+                    </div>
+                    <button class="relative" data-event="click:openBasket">
+                        <span class="material-icons text-foreground hover:text-primary transition-colors">shopping_cart</span>
+                        <span class="absolute -top-2 -right-2 bg-accent text-accent-foreground text-xs rounded-full w-5 h-5 flex items-center justify-center" data-bind="basketCount">3</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Navigation Overlay -->
+        <div id="mobile-nav" class="mobile-nav fixed inset-0 bg-card z-40 lg:hidden">
+            <div class="p-4">
+                <div class="flex justify-between items-center mb-8">
+                    <span class="text-xl font-bold">Menu</span>
+                    <button id="mobile-menu-close" data-event="click:closeMobileMenu">
+                        <span class="material-icons">close</span>
+                    </button>
+                </div>
+                <nav class="space-y-4">
+                    <a href="#" class="block text-lg font-medium py-3 border-b border-border">Home</a>
+                    <a href="#shop" class="block text-lg font-medium py-3 border-b border-border">Shop Wheels</a>
+                    <a href="#fitment" class="block text-lg font-medium py-3 border-b border-border">Fitment Finder</a>
+                    <a href="#services" class="block text-lg font-medium py-3 border-b border-border">Services</a>
+                    <a href="#gallery" class="block text-lg font-medium py-3 border-b border-border">Gallery</a>
+                    <a href="#about" class="block text-lg font-medium py-3 border-b border-border">About</a>
+                </nav>
+            </div>
+        </div>
+    </header>
+    <!-- @END_COMPONENT: Header -->
+
+    <!-- @COMPONENT: HeroSection [main banner with CTAs] -->
+    <section class="hero-gradient text-white relative overflow-hidden">
+        <div class="absolute inset-0 opacity-20">
+            <!-- Modern automotive garage with professional wheel display -->
+            <img src="https://images.unsplash.com/photo-1486754735734-325b5831c3ad?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&h=800" 
+                 alt="Professional automotive garage" 
+                 class="w-full h-full object-cover">
+        </div>
+        <div class="relative max-w-7xl mx-auto px-4 py-20 lg:py-32">
+            <div class="text-center space-y-6">
+                <h1 class="text-4xl lg:text-6xl font-bold leading-tight">
+                    Premium Wheels for<br>
+                    <span class="text-accent">Every Vehicle</span>
+                </h1>
+                <p class="text-xl lg:text-2xl text-white/90 max-w-3xl mx-auto">
+                    Professional fitment, unbeatable prices, and expert advice for your automotive upgrade journey
+                </p>
+                
+                <!-- USP Chips -->
+                <div class="flex flex-wrap justify-center gap-4 mt-8">
+                    <div class="bg-white/20 backdrop-blur-sm rounded-full px-4 py-2 flex items-center space-x-2">
+                        <span class="material-icons text-accent">verified</span>
+                        <span class="font-medium">Price Match Guarantee</span>
+                    </div>
+                    <div class="bg-white/20 backdrop-blur-sm rounded-full px-4 py-2 flex items-center space-x-2">
+                        <span class="material-icons text-accent">build</span>
+                        <span class="font-medium">Professional Fitment</span>
+                    </div>
+                    <div class="bg-white/20 backdrop-blur-sm rounded-full px-4 py-2 flex items-center space-x-2">
+                        <span class="material-icons text-accent">payments</span>
+                        <span class="font-medium">Finance Available</span>
+                    </div>
+                </div>
+
+                <!-- CTAs -->
+                <div class="flex flex-col sm:flex-row gap-4 justify-center mt-12">
+                    <button class="bg-accent hover:bg-accent/90 text-accent-foreground px-8 py-4 rounded-lg font-semibold text-lg transition-colors flex items-center justify-center space-x-2" data-event="click:openFitmentFinder">
+                        <span class="material-icons">search</span>
+                        <span>Find My Wheels</span>
+                    </button>
+                    <button class="bg-white/20 hover:bg-white/30 backdrop-blur-sm border border-white/30 text-white px-8 py-4 rounded-lg font-semibold text-lg transition-colors" data-event="click:scrollToProducts">
+                        Shop Now
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- @END_COMPONENT: HeroSection -->
+
+    <!-- @COMPONENT: FeaturedCollections [product showcase] -->
+    <section class="py-16 bg-background">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl lg:text-4xl font-bold text-foreground mb-4">Featured Collections</h2>
+                <p class="text-muted-foreground text-lg max-w-2xl mx-auto">
+                    Discover our curated selection of premium wheels from top automotive brands
+                </p>
+            </div>
+
+            <!-- @MAP: featuredCollections.map(collection => ( -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Collection Card 1 -->
+                <div class="wheel-card bg-card rounded-xl overflow-hidden custom-shadow">
+                    <!-- Premium alloy wheels in automotive showroom -->
+                    <img src="https://pixabay.com/get/ga9f3aa5de9d9a28665771729ca71ab5a30257ab7e7a099c7d403a44efc03e23626f16d5b8bb80e3c438a566813046a7701ad1102f2daa62cfc062f0112c50004_1280.jpg" 
+                         alt="Premium alloy wheels" 
+                         class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-card-foreground mb-2">Performance Series</h3>
+                        <p class="text-muted-foreground mb-4">Lightweight forged wheels for sports cars and performance vehicles</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-muted-foreground">From £400</span>
+                            <button class="bg-primary hover:bg-primary/90 text-primary-foreground px-4 py-2 rounded-lg transition-colors">
+                                View Collection
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Collection Card 2 -->
+                <div class="wheel-card bg-card rounded-xl overflow-hidden custom-shadow">
+                    <!-- Luxury car wheels with chrome finish -->
+                    <img src="https://pixabay.com/get/gc8e05a2be6000cfa0648c6c7c4f1b64f83fa147fd159f10791533aa29feeb1d02d38b248b3915bca6d6fdd4fbd1f6d37dbad6708009dcdcc966e060c997ee26e_1280.jpg" 
+                         alt="Luxury chrome wheels" 
+                         class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-card-foreground mb-2">Luxury Chrome</h3>
+                        <p class="text-muted-foreground mb-4">Premium chrome and polished finishes for luxury vehicles</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-muted-foreground">From £600</span>
+                            <button class="bg-primary hover:bg-primary/90 text-primary-foreground px-4 py-2 rounded-lg transition-colors">
+                                View Collection
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Collection Card 3 -->
+                <div class="wheel-card bg-card rounded-xl overflow-hidden custom-shadow">
+                    <!-- Off-road vehicle wheels in rugged setting -->
+                    <img src="https://pixabay.com/get/gc04e353b74d4b23bffcb03cb5f4505e27f44be716423ddb8d5cc1bb7f885047f57f46b692f84a19b7c5cba7df8fddc276efe71f5622be31599f4a72ca1c752a2_1280.jpg" 
+                         alt="Off-road vehicle wheels" 
+                         class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <h3 class="text-xl font-semibold text-card-foreground mb-2">Off-Road Ready</h3>
+                        <p class="text-muted-foreground mb-4">Durable wheels built for trucks, SUVs and off-road adventures</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-sm text-muted-foreground">From £300</span>
+                            <button class="bg-primary hover:bg-primary/90 text-primary-foreground px-4 py-2 rounded-lg transition-colors">
+                                View Collection
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- @END_MAP )) -->
+        </div>
+    </section>
+    <!-- @END_COMPONENT: FeaturedCollections -->
+
+    <!-- @COMPONENT: BrandMarquee [scrolling brand logos] -->
+    <section class="py-12 bg-muted overflow-hidden">
+        <div class="mb-8 text-center">
+            <h3 class="text-2xl font-semibold text-foreground mb-2">Trusted Brands</h3>
+            <p class="text-muted-foreground">We stock wheels from the world's leading manufacturers</p>
+        </div>
+        <div class="relative">
+            <div class="flex brand-marquee">
+                <!-- @MAP: brands.map(brand => ( -->
+                <div class="flex space-x-16 px-8">
+                    <div class="flex items-center justify-center w-32 h-16 bg-card rounded-lg custom-shadow">
+                        <span class="text-lg font-bold text-muted-foreground">BBS</span>
+                    </div>
+                    <div class="flex items-center justify-center w-32 h-16 bg-card rounded-lg custom-shadow">
+                        <span class="text-lg font-bold text-muted-foreground">OZ Racing</span>
+                    </div>
+                    <div class="flex items-center justify-center w-32 h-16 bg-card rounded-lg custom-shadow">
+                        <span class="text-lg font-bold text-muted-foreground">Enkei</span>
+                    </div>
+                    <div class="flex items-center justify-center w-32 h-16 bg-card rounded-lg custom-shadow">
+                        <span class="text-lg font-bold text-muted-foreground">Rays</span>
+                    </div>
+                    <div class="flex items-center justify-center w-32 h-16 bg-card rounded-lg custom-shadow">
+                        <span class="text-lg font-bold text-muted-foreground">HRE</span>
+                    </div>
+                    <div class="flex items-center justify-center w-32 h-16 bg-card rounded-lg custom-shadow">
+                        <span class="text-lg font-bold text-muted-foreground">Vossen</span>
+                    </div>
+                    <!-- Duplicate for seamless scroll -->
+                    <div class="flex items-center justify-center w-32 h-16 bg-card rounded-lg custom-shadow">
+                        <span class="text-lg font-bold text-muted-foreground">BBS</span>
+                    </div>
+                    <div class="flex items-center justify-center w-32 h-16 bg-card rounded-lg custom-shadow">
+                        <span class="text-lg font-bold text-muted-foreground">OZ Racing</span>
+                    </div>
+                </div>
+                <!-- @END_MAP )) -->
+            </div>
+        </div>
+    </section>
+    <!-- @END_COMPONENT: BrandMarquee -->
+
+    <!-- @COMPONENT: ShopSection [product catalog with filters] -->
+    <section id="shop" class="py-16 bg-background">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="flex items-center justify-between mb-8">
+                <div>
+                    <h2 class="text-3xl font-bold text-foreground mb-2">Shop Wheels</h2>
+                    <p class="text-muted-foreground">Find the perfect wheels for your vehicle</p>
+                </div>
+                <button 
+                    id="filters-toggle"
+                    class="lg:hidden bg-primary text-primary-foreground px-4 py-2 rounded-lg flex items-center space-x-2"
+                    data-event="click:toggleFilters">
+                    <span class="material-icons">tune</span>
+                    <span>Filters</span>
+                </button>
+            </div>
+
+            <div class="flex gap-8">
+                <!-- @COMPONENT: FiltersDrawer [filter options] -->
+                <div id="filters-drawer" class="filter-drawer fixed inset-y-0 left-0 w-80 bg-card shadow-xl z-30 lg:relative lg:w-64 lg:block lg:shadow-none lg:transform-none">
+                    <div class="p-6 h-full overflow-y-auto">
+                        <div class="flex justify-between items-center mb-6 lg:hidden">
+                            <h3 class="text-lg font-semibold">Filters</h3>
+                            <button id="filters-close" data-event="click:closeFilters">
+                                <span class="material-icons">close</span>
+                            </button>
+                        </div>
+
+                        <!-- Brand Filter -->
+                        <div class="mb-6">
+                            <h4 class="font-semibold mb-3 text-card-foreground">Brand</h4>
+                            <div class="space-y-2">
+                                <!-- @MAP: brands.map(brand => ( -->
+                                <label class="flex items-center space-x-2 cursor-pointer">
+                                    <input type="checkbox" class="rounded border-border" data-bind="selectedBrands" value="bbs">
+                                    <span class="text-sm">BBS <span class="text-muted-foreground">(24)</span></span>
+                                </label>
+                                <label class="flex items-center space-x-2 cursor-pointer">
+                                    <input type="checkbox" class="rounded border-border" data-bind="selectedBrands" value="oz">
+                                    <span class="text-sm">OZ Racing <span class="text-muted-foreground">(18)</span></span>
+                                </label>
+                                <label class="flex items-center space-x-2 cursor-pointer">
+                                    <input type="checkbox" class="rounded border-border" data-bind="selectedBrands" value="enkei">
+                                    <span class="text-sm">Enkei <span class="text-muted-foreground">(32)</span></span>
+                                </label>
+                                <!-- @END_MAP )) -->
+                            </div>
+                        </div>
+
+                        <!-- Size Filter -->
+                        <div class="mb-6">
+                            <h4 class="font-semibold mb-3 text-card-foreground">Wheel Size</h4>
+                            <div class="grid grid-cols-3 gap-2">
+                                <!-- @MAP: sizes.map(size => ( -->
+                                <button class="px-3 py-2 text-sm border border-border rounded-lg hover:border-primary hover:text-primary transition-colors" data-bind="selectedSize">17"</button>
+                                <button class="px-3 py-2 text-sm border border-border rounded-lg hover:border-primary hover:text-primary transition-colors" data-bind="selectedSize">18"</button>
+                                <button class="px-3 py-2 text-sm border border-border rounded-lg hover:border-primary hover:text-primary transition-colors" data-bind="selectedSize">19"</button>
+                                <button class="px-3 py-2 text-sm border border-border rounded-lg hover:border-primary hover:text-primary transition-colors" data-bind="selectedSize">20"</button>
+                                <button class="px-3 py-2 text-sm border border-border rounded-lg hover:border-primary hover:text-primary transition-colors" data-bind="selectedSize">21"</button>
+                                <button class="px-3 py-2 text-sm border border-border rounded-lg hover:border-primary hover:text-primary transition-colors" data-bind="selectedSize">22"</button>
+                                <!-- @END_MAP )) -->
+                            </div>
+                        </div>
+
+                        <!-- Price Range -->
+                        <div class="mb-6">
+                            <h4 class="font-semibold mb-3 text-card-foreground">Price Range</h4>
+                            <div class="space-y-4">
+                                <div class="px-3 py-2 bg-muted rounded-lg">
+                                    <div class="flex justify-between text-sm text-muted-foreground mb-2">
+                                        <span>£200</span>
+                                        <span>£2000</span>
+                                    </div>
+                                    <!-- @FUNCTIONALITY: Implement price range slider component -->
+                                    <input type="range" min="200" max="2000" class="w-full h-2 bg-border rounded-lg appearance-none slider" data-bind="priceRange">
+                                </div>
+                                <div class="flex space-x-2">
+                                    <input type="number" placeholder="Min" class="flex-1 px-3 py-2 border border-border rounded-lg text-sm bg-input" data-bind="minPrice">
+                                    <input type="number" placeholder="Max" class="flex-1 px-3 py-2 border border-border rounded-lg text-sm bg-input" data-bind="maxPrice">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Finish Filter -->
+                        <div class="mb-6">
+                            <h4 class="font-semibold mb-3 text-card-foreground">Finish</h4>
+                            <div class="space-y-2">
+                                <!-- @MAP: finishes.map(finish => ( -->
+                                <label class="flex items-center space-x-2 cursor-pointer">
+                                    <input type="checkbox" class="rounded border-border" data-bind="selectedFinishes">
+                                    <span class="text-sm">Gloss Black</span>
+                                </label>
+                                <label class="flex items-center space-x-2 cursor-pointer">
+                                    <input type="checkbox" class="rounded border-border" data-bind="selectedFinishes">
+                                    <span class="text-sm">Silver</span>
+                                </label>
+                                <label class="flex items-center space-x-2 cursor-pointer">
+                                    <input type="checkbox" class="rounded border-border" data-bind="selectedFinishes">
+                                    <span class="text-sm">Machined Face</span>
+                                </label>
+                                <!-- @END_MAP )) -->
+                            </div>
+                        </div>
+
+                        <!-- Stock Filter -->
+                        <div class="mb-6">
+                            <label class="flex items-center space-x-2 cursor-pointer">
+                                <input type="checkbox" class="rounded border-border" data-bind="inStockOnly">
+                                <span class="text-sm font-medium">In Stock Only</span>
+                            </label>
+                        </div>
+
+                        <button class="w-full bg-accent hover:bg-accent/90 text-accent-foreground py-3 rounded-lg font-semibold transition-colors" data-event="click:applyFilters">
+                            Apply Filters
+                        </button>
+                    </div>
+                </div>
+                <!-- @END_COMPONENT: FiltersDrawer -->
+
+                <!-- Product Grid -->
+                <div class="flex-1">
+                    <!-- Sort & Results Info -->
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
+                        <p class="text-muted-foreground" data-bind="resultsCount">Showing 1-12 of 156 wheels</p>
+                        <select class="px-4 py-2 border border-border rounded-lg bg-input text-foreground" data-bind="sortBy">
+                            <option>Sort by Popularity</option>
+                            <option>Price: Low to High</option>
+                            <option>Price: High to Low</option>
+                            <option>Newest First</option>
+                            <option>Best Rating</option>
+                        </select>
+                    </div>
+
+                    <!-- @COMPONENT: ProductGrid [wheel product cards] -->
+                    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                        <!-- @MAP: wheels.map(wheel => ( -->
+                        <!-- Wheel Card 1 -->
+                        <div class="wheel-card bg-card rounded-xl overflow-hidden custom-shadow" data-mock="true">
+                            <div class="relative">
+                                <!-- High-quality alloy wheel product shot -->
+                                <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=400&h=300" 
+                                     alt="Premium alloy wheel" 
+                                     class="w-full h-48 object-cover">
+                                <div class="absolute top-3 left-3 flex space-x-2">
+                                    <span class="bg-green-500 text-white text-xs px-2 py-1 rounded-full">In Stock</span>
+                                    <span class="bg-accent text-accent-foreground text-xs px-2 py-1 rounded-full">New</span>
+                                </div>
+                                <button class="absolute top-3 right-3 w-8 h-8 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white transition-colors" data-event="click:toggleWishlist">
+                                    <span class="material-icons text-sm text-gray-600">favorite_border</span>
+                                </button>
+                            </div>
+                            <div class="p-4">
+                                <h3 class="font-semibold text-card-foreground mb-1" data-bind="wheel.name">BBS CH-R II</h3>
+                                <p class="text-sm text-muted-foreground mb-2" data-bind="wheel.description">Satin Black with Stainless Steel Rim</p>
+                                <div class="flex items-center space-x-2 mb-2">
+                                    <div class="flex text-accent">
+                                        <span class="material-icons text-sm">star</span>
+                                        <span class="material-icons text-sm">star</span>
+                                        <span class="material-icons text-sm">star</span>
+                                        <span class="material-icons text-sm">star</span>
+                                        <span class="material-icons text-sm">star</span>
+                                    </div>
+                                    <span class="text-xs text-muted-foreground" data-bind="wheel.reviews">(24 reviews)</span>
+                                </div>
+                                <div class="flex flex-wrap gap-1 mb-3">
+                                    <!-- @MAP: wheel.sizes.map(size => ( -->
+                                    <span class="text-xs bg-muted text-muted-foreground px-2 py-1 rounded">18x8</span>
+                                    <span class="text-xs bg-muted text-muted-foreground px-2 py-1 rounded">19x8.5</span>
+                                    <span class="text-xs bg-muted text-muted-foreground px-2 py-1 rounded">20x9</span>
+                                    <!-- @END_MAP )) -->
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <div>
+                                        <span class="text-lg font-bold text-foreground" data-bind="wheel.price">£485</span>
+                                        <span class="text-sm text-muted-foreground">per wheel</span>
+                                    </div>
+                                    <button class="bg-primary hover:bg-primary/90 text-primary-foreground px-4 py-2 rounded-lg text-sm font-medium transition-colors" data-event="click:addToQuote">
+                                        Add to Quote
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Wheel Card 2 -->
+                        <div class="wheel-card bg-card rounded-xl overflow-hidden custom-shadow" data-mock="true">
+                            <div class="relative">
+                                <!-- Sporty performance wheel close-up -->
+                                <img src="https://pixabay.com/get/gf602187d46c5c0b5a42c624da685303f08febebc90845adc2ab52c45dff4e021638d411c8620fb518a317fc667ccca8545374ff2378977b2afb954d5bca79472_1280.jpg" 
+                                     alt="Sport performance wheel" 
+                                     class="w-full h-48 object-cover">
+                                <div class="absolute top-3 left-3">
+                                    <span class="bg-yellow-500 text-white text-xs px-2 py-1 rounded-full">Low Stock</span>
+                                </div>
+                                <button class="absolute top-3 right-3 w-8 h-8 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white transition-colors">
+                                    <span class="material-icons text-sm text-gray-600">favorite_border</span>
+                                </button>
+                            </div>
+                            <div class="p-4">
+                                <h3 class="font-semibold text-card-foreground mb-1">OZ Superturismo GT</h3>
+                                <p class="text-sm text-muted-foreground mb-2">Race White with Red Lettering</p>
+                                <div class="flex items-center space-x-2 mb-2">
+                                    <div class="flex text-accent">
+                                        <span class="material-icons text-sm">star</span>
+                                        <span class="material-icons text-sm">star</span>
+                                        <span class="material-icons text-sm">star</span>
+                                        <span class="material-icons text-sm">star</span>
+                                        <span class="material-icons text-sm">star_border</span>
+                                    </div>
+                                    <span class="text-xs text-muted-foreground">(18 reviews)</span>
+                                </div>
+                                <div class="flex flex-wrap gap-1 mb-3">
+                                    <span class="text-xs bg-muted text-muted-foreground px-2 py-1 rounded">17x7.5</span>
+                                    <span class="text-xs bg-muted text-muted-foreground px-2 py-1 rounded">18x8</span>
+                                    <span class="text-xs bg-muted text-muted-foreground px-2 py-1 rounded">19x8.5</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <div>
+                                        <span class="text-lg font-bold text-foreground">£325</span>
+                                        <span class="text-sm text-muted-foreground">per wheel</span>
+                                    </div>
+                                    <button class="bg-primary hover:bg-primary/90 text-primary-foreground px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+                                        Add to Quote
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Wheel Card 3 -->
+                        <div class="wheel-card bg-card rounded-xl overflow-hidden custom-shadow" data-mock="true">
+                            <div class="relative">
+                                <!-- Luxury chrome wheel detail -->
+                                <img src="https://pixabay.com/get/g764b2253d937a792221c545ef6d39abb80662056452b16b82fb369deda81d4cbd996a21711b661692f2fd515fd9d3583a7d813654d463302ad4f14247d262a69_1280.jpg" 
+                                     alt="Luxury chrome wheel" 
+                                     class="w-full h-48 object-cover">
+                                <div class="absolute top-3 left-3">
+                                    <span class="bg-green-500 text-white text-xs px-2 py-1 rounded-full">In Stock</span>
+                                </div>
+                                <button class="absolute top-3 right-3 w-8 h-8 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white transition-colors">
+                                    <span class="material-icons text-sm text-red-500">favorite</span>
+                                </button>
+                            </div>
+                            <div class="p-4">
+                                <h3 class="font-semibold text-card-foreground mb-1">Vossen CV3-R</h3>
+                                <p class="text-sm text-muted-foreground mb-2">Gloss Graphite Machined</p>
+                                <div class="flex items-center space-x-2 mb-2">
+                                    <div class="flex text-accent">
+                                        <span class="material-icons text-sm">star</span>
+                                        <span class="material-icons text-sm">star</span>
+                                        <span class="material-icons text-sm">star</span>
+                                        <span class="material-icons text-sm">star</span>
+                                        <span class="material-icons text-sm">star</span>
+                                    </div>
+                                    <span class="text-xs text-muted-foreground">(31 reviews)</span>
+                                </div>
+                                <div class="flex flex-wrap gap-1 mb-3">
+                                    <span class="text-xs bg-muted text-muted-foreground px-2 py-1 rounded">19x8.5</span>
+                                    <span class="text-xs bg-muted text-muted-foreground px-2 py-1 rounded">19x9.5</span>
+                                    <span class="text-xs bg-muted text-muted-foreground px-2 py-1 rounded">20x10</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <div>
+                                        <span class="text-lg font-bold text-foreground">£745</span>
+                                        <span class="text-sm text-muted-foreground">per wheel</span>
+                                    </div>
+                                    <button class="bg-primary hover:bg-primary/90 text-primary-foreground px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+                                        Add to Quote
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- More product cards would repeat here -->
+                        <!-- @MAP continues for remaining products -->
+                        
+                        <!-- Wheel Card 4 -->
+                        <div class="wheel-card bg-card rounded-xl overflow-hidden custom-shadow" data-mock="true">
+                            <div class="relative">
+                                <!-- Premium forged wheel on luxury vehicle -->
+                                <img src="https://pixabay.com/get/ge9675550ea05298b8bcb14b4120f6dc677d65c479af9a7508e9eaf0326d420cf11eb258c52d1f492ea5ccb50b7727cc90b00dd0fcc1f45b6c89c6b6a82bf86a8_1280.jpg" 
+                                     alt="Premium forged wheel" 
+                                     class="w-full h-48 object-cover">
+                                <div class="absolute top-3 left-3">
+                                    <span class="bg-red-500 text-white text-xs px-2 py-1 rounded-full">Pre-Order</span>
+                                </div>
+                                <button class="absolute top-3 right-3 w-8 h-8 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white transition-colors">
+                                    <span class="material-icons text-sm text-gray-600">favorite_border</span>
+                                </button>
+                            </div>
+                            <div class="p-4">
+                                <h3 class="font-semibold text-card-foreground mb-1">HRE P111SC</h3>
+                                <p class="text-sm text-muted-foreground mb-2">Satin Charcoal</p>
+                                <div class="flex items-center space-x-2 mb-2">
+                                    <div class="flex text-accent">
+                                        <span class="material-icons text-sm">star</span>
+                                        <span class="material-icons text-sm">star</span>
+                                        <span class="material-icons text-sm">star</span>
+                                        <span class="material-icons text-sm">star</span>
+                                        <span class="material-icons text-sm">star</span>
+                                    </div>
+                                    <span class="text-xs text-muted-foreground">(12 reviews)</span>
+                                </div>
+                                <div class="flex flex-wrap gap-1 mb-3">
+                                    <span class="text-xs bg-muted text-muted-foreground px-2 py-1 rounded">20x9</span>
+                                    <span class="text-xs bg-muted text-muted-foreground px-2 py-1 rounded">20x10.5</span>
+                                    <span class="text-xs bg-muted text-muted-foreground px-2 py-1 rounded">21x12</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <div>
+                                        <span class="text-lg font-bold text-foreground">£1,240</span>
+                                        <span class="text-sm text-muted-foreground">per wheel</span>
+                                    </div>
+                                    <button class="bg-primary hover:bg-primary/90 text-primary-foreground px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+                                        Add to Quote
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Wheel Card 5 -->
+                        <div class="wheel-card bg-card rounded-xl overflow-hidden custom-shadow" data-mock="true">
+                            <div class="relative">
+                                <!-- Matte black performance wheel -->
+                                <img src="https://pixabay.com/get/gb23364a5ea198b44c5493c5f6a07efea1e859e8172fe5eb3936387dc8e97a4e2e3b96933fa0697f69bf723ad2a71144fa62e576116410ff113c8d31c22338541_1280.jpg" 
+                                     alt="Matte black performance wheel" 
+                                     class="w-full h-48 object-cover">
+                                <div class="absolute top-3 left-3">
+                                    <span class="bg-green-500 text-white text-xs px-2 py-1 rounded-full">In Stock</span>
+                                </div>
+                                <button class="absolute top-3 right-3 w-8 h-8 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white transition-colors">
+                                    <span class="material-icons text-sm text-gray-600">favorite_border</span>
+                                </button>
+                            </div>
+                            <div class="p-4">
+                                <h3 class="font-semibold text-card-foreground mb-1">Enkei RPF1</h3>
+                                <p class="text-sm text-muted-foreground mb-2">Matte Black</p>
+                                <div class="flex items-center space-x-2 mb-2">
+                                    <div class="flex text-accent">
+                                        <span class="material-icons text-sm">star</span>
+                                        <span class="material-icons text-sm">star</span>
+                                        <span class="material-icons text-sm">star</span>
+                                        <span class="material-icons text-sm">star</span>
+                                        <span class="material-icons text-sm">star_border</span>
+                                    </div>
+                                    <span class="text-xs text-muted-foreground">(67 reviews)</span>
+                                </div>
+                                <div class="flex flex-wrap gap-1 mb-3">
+                                    <span class="text-xs bg-muted text-muted-foreground px-2 py-1 rounded">17x9</span>
+                                    <span class="text-xs bg-muted text-muted-foreground px-2 py-1 rounded">18x9.5</span>
+                                    <span class="text-xs bg-muted text-muted-foreground px-2 py-1 rounded">18x10.5</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <div>
+                                        <span class="text-lg font-bold text-foreground">£225</span>
+                                        <span class="text-sm text-muted-foreground">per wheel</span>
+                                    </div>
+                                    <button class="bg-primary hover:bg-primary/90 text-primary-foreground px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+                                        Add to Quote
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Wheel Card 6 -->
+                        <div class="wheel-card bg-card rounded-xl overflow-hidden custom-shadow" data-mock="true">
+                            <div class="relative">
+                                <!-- Silver multi-spoke racing wheel -->
+                                <img src="https://pixabay.com/get/g279279a1be8d101235047fbb0b00c1c4ee9622d218b18edc39abbd562792c74d387e6b2e4a612dc55b931f2cd3123547c548a6b61e781c34356cac7ba5cb360b_1280.jpg" 
+                                     alt="Silver racing wheel" 
+                                     class="w-full h-48 object-cover">
+                                <div class="absolute top-3 left-3 flex space-x-2">
+                                    <span class="bg-green-500 text-white text-xs px-2 py-1 rounded-full">In Stock</span>
+                                    <span class="bg-blue-500 text-white text-xs px-2 py-1 rounded-full">Finance</span>
+                                </div>
+                                <button class="absolute top-3 right-3 w-8 h-8 bg-white/90 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white transition-colors">
+                                    <span class="material-icons text-sm text-gray-600">favorite_border</span>
+                                </button>
+                            </div>
+                            <div class="p-4">
+                                <h3 class="font-semibold text-card-foreground mb-1">Rays TE37 Ultra</h3>
+                                <p class="text-sm text-muted-foreground mb-2">Diamond Silver</p>
+                                <div class="flex items-center space-x-2 mb-2">
+                                    <div class="flex text-accent">
+                                        <span class="material-icons text-sm">star</span>
+                                        <span class="material-icons text-sm">star</span>
+                                        <span class="material-icons text-sm">star</span>
+                                        <span class="material-icons text-sm">star</span>
+                                        <span class="material-icons text-sm">star</span>
+                                    </div>
+                                    <span class="text-xs text-muted-foreground">(45 reviews)</span>
+                                </div>
+                                <div class="flex flex-wrap gap-1 mb-3">
+                                    <span class="text-xs bg-muted text-muted-foreground px-2 py-1 rounded">18x9.5</span>
+                                    <span class="text-xs bg-muted text-muted-foreground px-2 py-1 rounded">18x10.5</span>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <div>
+                                        <span class="text-lg font-bold text-foreground">£890</span>
+                                        <span class="text-sm text-muted-foreground">per wheel</span>
+                                    </div>
+                                    <button class="bg-primary hover:bg-primary/90 text-primary-foreground px-4 py-2 rounded-lg text-sm font-medium transition-colors">
+                                        Add to Quote
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- @END_MAP )) -->
+                    </div>
+                    <!-- @END_COMPONENT: ProductGrid -->
+
+                    <!-- Pagination -->
+                    <div class="flex justify-center mt-12">
+                        <div class="flex items-center space-x-2">
+                            <button class="px-3 py-2 border border-border rounded-lg hover:bg-muted transition-colors" data-event="click:previousPage">
+                                <span class="material-icons text-sm">chevron_left</span>
+                            </button>
+                            <button class="px-4 py-2 bg-primary text-primary-foreground rounded-lg">1</button>
+                            <button class="px-4 py-2 border border-border rounded-lg hover:bg-muted transition-colors">2</button>
+                            <button class="px-4 py-2 border border-border rounded-lg hover:bg-muted transition-colors">3</button>
+                            <span class="px-2 text-muted-foreground">...</span>
+                            <button class="px-4 py-2 border border-border rounded-lg hover:bg-muted transition-colors">13</button>
+                            <button class="px-3 py-2 border border-border rounded-lg hover:bg-muted transition-colors" data-event="click:nextPage">
+                                <span class="material-icons text-sm">chevron_right</span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- @END_COMPONENT: ShopSection -->
+
+    <!-- @COMPONENT: FitmentFinder [vehicle selection stepper] -->
+    <section id="fitment" class="py-16 bg-muted">
+        <div class="max-w-4xl mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl lg:text-4xl font-bold text-foreground mb-4">Fitment Finder</h2>
+                <p class="text-muted-foreground text-lg">
+                    Find wheels that perfectly fit your vehicle with our expert fitment guide
+                </p>
+            </div>
+
+            <!-- @COMPONENT: VehiclePicker [stepper form] -->
+            <div class="bg-card rounded-xl p-8 custom-shadow">
+                <!-- Stepper Header -->
+                <div class="flex justify-between items-center mb-8">
+                    <div class="flex items-center space-x-4">
+                        <div class="flex items-center justify-center w-8 h-8 bg-primary text-primary-foreground rounded-full text-sm font-semibold">1</div>
+                        <span class="font-medium">Make</span>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <div class="flex items-center justify-center w-8 h-8 bg-muted text-muted-foreground rounded-full text-sm">2</div>
+                        <span class="text-muted-foreground">Model</span>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <div class="flex items-center justify-center w-8 h-8 bg-muted text-muted-foreground rounded-full text-sm">3</div>
+                        <span class="text-muted-foreground">Year</span>
+                    </div>
+                    <div class="flex items-center space-x-4">
+                        <div class="flex items-center justify-center w-8 h-8 bg-muted text-muted-foreground rounded-full text-sm">4</div>
+                        <span class="text-muted-foreground">Engine</span>
+                    </div>
+                </div>
+
+                <!-- Vehicle Selection Form -->
+                <div class="space-y-6">
+                    <div>
+                        <label class="block text-sm font-medium text-card-foreground mb-2">Select Your Vehicle Make</label>
+                        <select class="w-full px-4 py-3 border border-border rounded-lg bg-input text-foreground focus:ring-2 focus:ring-ring" data-bind="selectedMake">
+                            <option value="">Choose make...</option>
+                            <option value="audi">Audi</option>
+                            <option value="bmw">BMW</option>
+                            <option value="mercedes">Mercedes-Benz</option>
+                            <option value="volkswagen">Volkswagen</option>
+                            <option value="ford">Ford</option>
+                            <option value="toyota">Toyota</option>
+                        </select>
+                    </div>
+                    
+                    <div class="grid md:grid-cols-3 gap-4">
+                        <div>
+                            <label class="block text-sm font-medium text-card-foreground mb-2">Model</label>
+                            <select class="w-full px-4 py-3 border border-border rounded-lg bg-input text-foreground" data-bind="selectedModel" disabled>
+                                <option>Select make first</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-card-foreground mb-2">Year</label>
+                            <select class="w-full px-4 py-3 border border-border rounded-lg bg-input text-foreground" data-bind="selectedYear" disabled>
+                                <option>Select model first</option>
+                            </select>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-card-foreground mb-2">Engine/Trim</label>
+                            <select class="w-full px-4 py-3 border border-border rounded-lg bg-input text-foreground" data-bind="selectedEngine" disabled>
+                                <option>Select year first</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <button class="w-full bg-accent hover:bg-accent/90 text-accent-foreground py-4 rounded-lg font-semibold text-lg transition-colors" data-event="click:findWheels">
+                        Find Compatible Wheels
+                    </button>
+                </div>
+            </div>
+            <!-- @END_COMPONENT: VehiclePicker -->
+        </div>
+    </section>
+    <!-- @END_COMPONENT: FitmentFinder -->
+
+    <!-- @COMPONENT: Services [service offerings] -->
+    <section id="services" class="py-16 bg-background">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl lg:text-4xl font-bold text-foreground mb-4">Professional Services</h2>
+                <p class="text-muted-foreground text-lg max-w-2xl mx-auto">
+                    Complete automotive services from expert technicians with state-of-the-art equipment
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- Service Card 1 -->
+                <div class="bg-card rounded-xl p-6 custom-shadow text-center">
+                    <div class="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="material-icons text-primary text-2xl">build</span>
+                    </div>
+                    <h3 class="text-xl font-semibold text-card-foreground mb-2">Wheel Fitting</h3>
+                    <p class="text-muted-foreground mb-4">Professional wheel installation with precision torque settings</p>
+                    <button class="bg-primary hover:bg-primary/90 text-primary-foreground px-4 py-2 rounded-lg font-medium transition-colors">
+                        Book Service
+                    </button>
+                </div>
+
+                <!-- Service Card 2 -->
+                <div class="bg-card rounded-xl p-6 custom-shadow text-center">
+                    <div class="w-16 h-16 bg-accent/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="material-icons text-accent text-2xl">tire_repair</span>
+                    </div>
+                    <h3 class="text-xl font-semibold text-card-foreground mb-2">Tyre Services</h3>
+                    <p class="text-muted-foreground mb-4">Premium tyres, balancing, and alignment services</p>
+                    <button class="bg-primary hover:bg-primary/90 text-primary-foreground px-4 py-2 rounded-lg font-medium transition-colors">
+                        Book Service
+                    </button>
+                </div>
+
+                <!-- Service Card 3 -->
+                <div class="bg-card rounded-xl p-6 custom-shadow text-center">
+                    <div class="w-16 h-16 bg-green-500/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="material-icons text-green-500 text-2xl">auto_fix_high</span>
+                    </div>
+                    <h3 class="text-xl font-semibold text-card-foreground mb-2">Refurbishment</h3>
+                    <p class="text-muted-foreground mb-4">Restore your wheels to factory condition</p>
+                    <button class="bg-primary hover:bg-primary/90 text-primary-foreground px-4 py-2 rounded-lg font-medium transition-colors">
+                        Book Service
+                    </button>
+                </div>
+
+                <!-- Service Card 4 -->
+                <div class="bg-card rounded-xl p-6 custom-shadow text-center">
+                    <div class="w-16 h-16 bg-purple-500/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <span class="material-icons text-purple-500 text-2xl">straighten</span>
+                    </div>
+                    <h3 class="text-xl font-semibold text-card-foreground mb-2">Alignment</h3>
+                    <p class="text-muted-foreground mb-4">Precision wheel alignment for optimal performance</p>
+                    <button class="bg-primary hover:bg-primary/90 text-primary-foreground px-4 py-2 rounded-lg font-medium transition-colors">
+                        Book Service
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- @END_COMPONENT: Services -->
+
+    <!-- @COMPONENT: TestimonialsSection [customer reviews] -->
+    <section class="py-16 bg-primary text-primary-foreground relative overflow-hidden">
+        <div class="absolute inset-0 opacity-10">
+            <!-- Satisfied customer with their customized vehicle -->
+            <img src="https://pixabay.com/get/gda3ff7703c5873c10ea8fbfe0ff3d159bc62f3d904fbfbcee9a6d1207c1068daf5f1a909422c14fa9b6a8506860cbb85d06cc1036d8ea412bfa3291e5cdd7d93_1280.jpg" 
+                 alt="Happy customer with vehicle" 
+                 class="w-full h-full object-cover">
+        </div>
+        <div class="relative max-w-7xl mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl lg:text-4xl font-bold mb-4">What Our Customers Say</h2>
+                <p class="text-primary-foreground/80 text-lg">
+                    Thousands of satisfied customers trust us with their vehicles
+                </p>
+            </div>
+
+            <!-- @COMPONENT: TestimonialCarousel [customer testimonials] -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- @MAP: testimonials.map(testimonial => ( -->
+                <!-- Testimonial Card 1 -->
+                <div class="testimonial-card rounded-xl p-6" data-mock="true">
+                    <div class="flex text-accent mb-4">
+                        <span class="material-icons">star</span>
+                        <span class="material-icons">star</span>
+                        <span class="material-icons">star</span>
+                        <span class="material-icons">star</span>
+                        <span class="material-icons">star</span>
+                    </div>
+                    <p class="text-primary-foreground/90 mb-4">
+                        "Exceptional service and quality. The team helped me find the perfect wheels for my BMW and the fitment was flawless. Highly recommended!"
+                    </p>
+                    <div class="flex items-center space-x-3">
+                        <!-- Professional customer testimonial photo -->
+                        <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=60&h=60" 
+                             alt="Customer testimonial" 
+                             class="w-12 h-12 rounded-full object-cover">
+                        <div>
+                            <p class="font-semibold text-primary-foreground" data-bind="testimonial.name">James Mitchell</p>
+                            <p class="text-sm text-primary-foreground/70" data-bind="testimonial.location">London, UK</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial Card 2 -->
+                <div class="testimonial-card rounded-xl p-6" data-mock="true">
+                    <div class="flex text-accent mb-4">
+                        <span class="material-icons">star</span>
+                        <span class="material-icons">star</span>
+                        <span class="material-icons">star</span>
+                        <span class="material-icons">star</span>
+                        <span class="material-icons">star</span>
+                    </div>
+                    <p class="text-primary-foreground/90 mb-4">
+                        "Outstanding customer service and expertise. They guided me through the entire process and delivered exactly what they promised."
+                    </p>
+                    <div class="flex items-center space-x-3">
+                        <!-- Professional female customer testimonial -->
+                        <img src="https://pixabay.com/get/g83d3a67aad1bafa722ec4e3ce8ab22c1ca4c09062a17f835bff5b895b0b7d727df7d03c8d0f1c65605c643ba966e46ebf62645987f5fa188a8bd07381783bec0_1280.jpg" 
+                             alt="Customer testimonial" 
+                             class="w-12 h-12 rounded-full object-cover">
+                        <div>
+                            <p class="font-semibold text-primary-foreground">Sarah Johnson</p>
+                            <p class="text-sm text-primary-foreground/70">Manchester, UK</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Testimonial Card 3 -->
+                <div class="testimonial-card rounded-xl p-6" data-mock="true">
+                    <div class="flex text-accent mb-4">
+                        <span class="material-icons">star</span>
+                        <span class="material-icons">star</span>
+                        <span class="material-icons">star</span>
+                        <span class="material-icons">star</span>
+                        <span class="material-icons">star</span>
+                    </div>
+                    <p class="text-primary-foreground/90 mb-4">
+                        "Best wheel supplier I've used. Competitive prices, fast delivery, and the quality is top-notch. Will definitely use again."
+                    </p>
+                    <div class="flex items-center space-x-3">
+                        <!-- Professional customer with automotive background -->
+                        <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=60&h=60" 
+                             alt="Customer testimonial" 
+                             class="w-12 h-12 rounded-full object-cover">
+                        <div>
+                            <p class="font-semibold text-primary-foreground">Michael Chen</p>
+                            <p class="text-sm text-primary-foreground/70">Birmingham, UK</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- @END_MAP )) -->
+            </div>
+            <!-- @END_COMPONENT: TestimonialCarousel -->
+        </div>
+    </section>
+    <!-- @END_COMPONENT: TestimonialsSection -->
+
+    <!-- @COMPONENT: Gallery [customer vehicle showcase] -->
+    <section id="gallery" class="py-16 bg-background">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl lg:text-4xl font-bold text-foreground mb-4">Customer Gallery</h2>
+                <p class="text-muted-foreground text-lg">
+                    See how our wheels transform vehicles from ordinary to extraordinary
+                </p>
+            </div>
+
+            <!-- Gallery Filters -->
+            <div class="flex flex-wrap justify-center gap-4 mb-8">
+                <button class="px-4 py-2 bg-primary text-primary-foreground rounded-lg font-medium">All</button>
+                <button class="px-4 py-2 border border-border rounded-lg hover:bg-muted transition-colors">Sports Cars</button>
+                <button class="px-4 py-2 border border-border rounded-lg hover:bg-muted transition-colors">SUVs</button>
+                <button class="px-4 py-2 border border-border rounded-lg hover:bg-muted transition-colors">Luxury</button>
+                <button class="px-4 py-2 border border-border rounded-lg hover:bg-muted transition-colors">Off-Road</button>
+            </div>
+
+            <!-- @COMPONENT: ImageGallery [masonry grid] -->
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                <!-- @MAP: galleryImages.map(image => ( -->
+                <!-- Gallery Image 1 -->
+                <div class="group relative overflow-hidden rounded-xl custom-shadow hover:shadow-lg transition-shadow" data-mock="true">
+                    <!-- Customized sports car with new wheels -->
+                    <img src="https://pixabay.com/get/g3d8af527ecbf2d351846f2c205b5e6bbe2b4fa497235a85377046e3faf14e4af0b4d03ec6b0499d8169154bf77e3d649cb9f0f5df24ebee81a6a87847fe9eae5_1280.jpg" 
+                         alt="Customized sports car" 
+                         class="w-full h-64 object-cover group-hover:scale-105 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300">
+                        <div class="absolute bottom-4 left-4 right-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <p class="font-semibold" data-bind="image.vehicle">BMW M3 Competition</p>
+                            <p class="text-sm" data-bind="image.wheels">BBS CH-R II 19x9.5</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gallery Image 2 -->
+                <div class="group relative overflow-hidden rounded-xl custom-shadow hover:shadow-lg transition-shadow" data-mock="true">
+                    <!-- Luxury sedan with premium wheels -->
+                    <img src="https://pixabay.com/get/g8a0d220eff7c61491b51adbbc0f049138e2c9930d3281f5cc082ca1ef10882d754ea87a17eacac4dea5a522708f634fa242e8b79198efa2ea47ff7a40c3a61c9_1280.jpg" 
+                         alt="Luxury sedan with premium wheels" 
+                         class="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300">
+                        <div class="absolute bottom-4 left-4 right-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <p class="font-semibold">Mercedes-Benz S-Class</p>
+                            <p class="text-sm">Vossen VFS-1 20x10</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gallery Image 3 -->
+                <div class="group relative overflow-hidden rounded-xl custom-shadow hover:shadow-lg transition-shadow" data-mock="true">
+                    <!-- Modified truck with off-road wheels -->
+                    <img src="https://pixabay.com/get/g03eb205bfc6d75bf49d3d86c1dc8877a460ff672254a935701a59c039ab1b852129984d75bb33346acf4cdd2957e8e152704fea780c4c2809c4200f435eeddf3_1280.jpg" 
+                         alt="Modified truck with off-road wheels" 
+                         class="w-full h-80 object-cover group-hover:scale-105 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300">
+                        <div class="absolute bottom-4 left-4 right-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <p class="font-semibold">Ford F-150 Raptor</p>
+                            <p class="text-sm">Method 501 VT-Spec 17x8.5</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Gallery Image 4 -->
+                <div class="group relative overflow-hidden rounded-xl custom-shadow hover:shadow-lg transition-shadow" data-mock="true">
+                    <!-- Performance car with racing wheels -->
+                    <img src="https://pixabay.com/get/g3eda435662f4feb62c5d68634e249309bf0331b32a0f57463445e73f8a166f8da385fb69af8c6dff62bb61d5c7eb0bccdfe7fc99bf1bcfdde677a23a74313d87_1280.jpg" 
+                         alt="Performance car with racing wheels" 
+                         class="w-full h-56 object-cover group-hover:scale-105 transition-transform duration-500">
+                    <div class="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300">
+                        <div class="absolute bottom-4 left-4 right-4 text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                            <p class="font-semibold">Porsche 911 GT3</p>
+                            <p class="text-sm">OZ Superturismo 19x11</p>
+                        </div>
+                    </div>
+                </div>
+                <!-- @END_MAP )) -->
+            </div>
+            <!-- @END_COMPONENT: ImageGallery -->
+
+            <div class="text-center mt-12">
+                <button class="bg-primary hover:bg-primary/90 text-primary-foreground px-8 py-3 rounded-lg font-semibold transition-colors">
+                    View Full Gallery
+                </button>
+            </div>
+        </div>
+    </section>
+    <!-- @END_COMPONENT: Gallery -->
+
+    <!-- @COMPONENT: Contact [contact information and form] -->
+    <section id="about" class="py-16 bg-muted">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid lg:grid-cols-2 gap-12">
+                <!-- Contact Info -->
+                <div>
+                    <h2 class="text-3xl font-bold text-foreground mb-6">Get In Touch</h2>
+                    <p class="text-muted-foreground text-lg mb-8">
+                        Need help choosing the right wheels? Our expert team is here to help you make the perfect choice for your vehicle.
+                    </p>
+
+                    <div class="space-y-6">
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
+                                <span class="material-icons text-primary">location_on</span>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-foreground">Visit Our Showroom</h3>
+                                <p class="text-muted-foreground">123 Automotive Park, Birmingham B12 9QR</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
+                                <span class="material-icons text-primary">phone</span>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-foreground">Call Us</h3>
+                                <p class="text-muted-foreground">0800 123 4567</p>
+                                <p class="text-sm text-muted-foreground">Mon-Fri 8AM-6PM, Sat 9AM-5PM</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start space-x-4">
+                            <div class="w-12 h-12 bg-primary/10 rounded-full flex items-center justify-center">
+                                <span class="material-icons text-primary">chat</span>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-foreground">WhatsApp</h3>
+                                <p class="text-muted-foreground">+44 7123 456789</p>
+                                <button class="text-primary hover:text-primary/80 text-sm font-medium">Start Chat</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Map Placeholder -->
+                    <div class="mt-8 h-64 bg-card rounded-xl flex items-center justify-center">
+                        <span class="material-icons text-4xl text-muted-foreground">map</span>
+                        <span class="ml-2 text-muted-foreground">Interactive Map</span>
+                        <!-- @FUNCTIONALITY: Embed Google Maps or similar mapping service -->
+                    </div>
+                </div>
+
+                <!-- Contact Form -->
+                <div class="bg-card rounded-xl p-8 custom-shadow">
+                    <h3 class="text-2xl font-semibold text-card-foreground mb-6">Send us a message</h3>
+                    <form class="space-y-6" data-event="submit:handleContactForm">
+                        <div class="grid md:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-sm font-medium text-card-foreground mb-2">First Name</label>
+                                <input 
+                                    type="text" 
+                                    class="w-full px-4 py-3 border border-border rounded-lg bg-input focus:ring-2 focus:ring-ring"
+                                    data-bind="contactForm.firstName">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-card-foreground mb-2">Last Name</label>
+                                <input 
+                                    type="text" 
+                                    class="w-full px-4 py-3 border border-border rounded-lg bg-input focus:ring-2 focus:ring-ring"
+                                    data-bind="contactForm.lastName">
+                            </div>
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-card-foreground mb-2">Email</label>
+                            <input 
+                                type="email" 
+                                class="w-full px-4 py-3 border border-border rounded-lg bg-input focus:ring-2 focus:ring-ring"
+                                data-bind="contactForm.email">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-card-foreground mb-2">Phone</label>
+                            <input 
+                                type="tel" 
+                                class="w-full px-4 py-3 border border-border rounded-lg bg-input focus:ring-2 focus:ring-ring"
+                                data-bind="contactForm.phone">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-card-foreground mb-2">Vehicle Details</label>
+                            <input 
+                                type="text" 
+                                placeholder="e.g., 2020 BMW M3 Competition"
+                                class="w-full px-4 py-3 border border-border rounded-lg bg-input focus:ring-2 focus:ring-ring"
+                                data-bind="contactForm.vehicle">
+                        </div>
+                        <div>
+                            <label class="block text-sm font-medium text-card-foreground mb-2">Message</label>
+                            <textarea 
+                                rows="4" 
+                                class="w-full px-4 py-3 border border-border rounded-lg bg-input focus:ring-2 focus:ring-ring resize-none"
+                                placeholder="Tell us about your wheel requirements..."
+                                data-bind="contactForm.message"></textarea>
+                        </div>
+                        <button 
+                            type="submit" 
+                            class="w-full bg-primary hover:bg-primary/90 text-primary-foreground py-3 rounded-lg font-semibold transition-colors"
+                            data-implementation="Should validate form before submission">
+                            Send Message
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- @END_COMPONENT: Contact -->
+
+    <!-- @COMPONENT: Footer [site footer with links] -->
+    <footer class="bg-card border-t border-border pt-16 pb-8">
+        <div class="max-w-7xl mx-auto px-4">
+            <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8 mb-12">
+                <!-- Company Info -->
+                <div>
+                    <div class="flex items-center space-x-2 mb-4">
+                        <div class="w-8 h-8 bg-primary rounded-full flex items-center justify-center">
+                            <span class="material-icons text-primary-foreground text-lg">track_changes</span>
+                        </div>
+                        <span class="text-xl font-bold text-foreground">WheelHub</span>
+                    </div>
+                    <p class="text-muted-foreground mb-4">
+                        Premium automotive wheels and professional fitment services for every vehicle.
+                    </p>
+                    <div class="flex space-x-4">
+                        <button class="w-10 h-10 bg-muted hover:bg-primary hover:text-primary-foreground rounded-full flex items-center justify-center transition-colors">
+                            <span class="material-icons text-sm">facebook</span>
+                        </button>
+                        <button class="w-10 h-10 bg-muted hover:bg-primary hover:text-primary-foreground rounded-full flex items-center justify-center transition-colors">
+                            <span class="material-icons text-sm">chat</span>
+                        </button>
+                        <button class="w-10 h-10 bg-muted hover:bg-primary hover:text-primary-foreground rounded-full flex items-center justify-center transition-colors">
+                            <span class="material-icons text-sm">camera_alt</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Quick Links -->
+                <div>
+                    <h3 class="font-semibold text-card-foreground mb-4">Quick Links</h3>
+                    <div class="space-y-2">
+                        <a href="#" class="block text-muted-foreground hover:text-primary transition-colors">Shop Wheels</a>
+                        <a href="#" class="block text-muted-foreground hover:text-primary transition-colors">Fitment Finder</a>
+                        <a href="#" class="block text-muted-foreground hover:text-primary transition-colors">Services</a>
+                        <a href="#" class="block text-muted-foreground hover:text-primary transition-colors">Gallery</a>
+                        <a href="#" class="block text-muted-foreground hover:text-primary transition-colors">About Us</a>
+                    </div>
+                </div>
+
+                <!-- Customer Service -->
+                <div>
+                    <h3 class="font-semibold text-card-foreground mb-4">Customer Service</h3>
+                    <div class="space-y-2">
+                        <a href="#" class="block text-muted-foreground hover:text-primary transition-colors">Contact Us</a>
+                        <a href="#" class="block text-muted-foreground hover:text-primary transition-colors">Fitting Guide</a>
+                        <a href="#" class="block text-muted-foreground hover:text-primary transition-colors">Returns Policy</a>
+                        <a href="#" class="block text-muted-foreground hover:text-primary transition-colors">Warranty</a>
+                        <a href="#" class="block text-muted-foreground hover:text-primary transition-colors">FAQ</a>
+                    </div>
+                </div>
+
+                <!-- Newsletter -->
+                <div>
+                    <h3 class="font-semibold text-card-foreground mb-4">Stay Updated</h3>
+                    <p class="text-muted-foreground text-sm mb-4">
+                        Get the latest wheel releases and special offers.
+                    </p>
+                    <div class="space-y-3">
+                        <input 
+                            type="email" 
+                            placeholder="Your email address" 
+                            class="w-full px-4 py-2 border border-border rounded-lg bg-input text-sm"
+                            data-bind="newsletter.email">
+                        <button class="w-full bg-primary hover:bg-primary/90 text-primary-foreground py-2 rounded-lg font-medium text-sm transition-colors" data-event="click:subscribeNewsletter">
+                            Subscribe
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Bottom Footer -->
+            <div class="flex flex-col md:flex-row justify-between items-center pt-8 border-t border-border">
+                <p class="text-muted-foreground text-sm">
+                    © 2024 WheelHub. All rights reserved.
+                </p>
+                <div class="flex space-x-6 mt-4 md:mt-0">
+                    <a href="#" class="text-muted-foreground hover:text-primary text-sm transition-colors">Privacy Policy</a>
+                    <a href="#" class="text-muted-foreground hover:text-primary text-sm transition-colors">Terms of Service</a>
+                    <a href="#" class="text-muted-foreground hover:text-primary text-sm transition-colors">Cookie Policy</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!-- @END_COMPONENT: Footer -->
+
+    <!-- @COMPONENT: BottomActions [mobile FAB] -->
+    <div class="fixed bottom-6 right-6 lg:hidden z-40">
+        <button class="w-14 h-14 bg-accent hover:bg-accent/90 text-accent-foreground rounded-full shadow-lg flex items-center justify-center" data-event="click:openFitmentFinder">
+            <span class="material-icons">search</span>
+        </button>
+    </div>
+    <!-- @END_COMPONENT: BottomActions -->
+
+    <!-- @COMPONENT: BasketModal [shopping cart overlay] -->
+    <div id="basket-modal" class="fixed inset-0 bg-black/50 z-50 hidden">
+        <div class="flex items-center justify-center min-h-screen p-4">
+            <div class="bg-card rounded-xl max-w-md w-full p-6">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="text-xl font-semibold text-card-foreground">Your Quote</h3>
+                    <button id="close-basket" data-event="click:closeBasket">
+                        <span class="material-icons">close</span>
+                    </button>
+                </div>
+                
+                <!-- Basket Items -->
+                <div class="space-y-4 mb-6">
+                    <!-- @MAP: basketItems.map(item => ( -->
+                    <div class="flex items-center space-x-3 p-3 border border-border rounded-lg" data-mock="true">
+                        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?ixlib=rb-4.0.3&auto=format&fit=crop&w=60&h=60" 
+                             alt="Wheel in basket" 
+                             class="w-12 h-12 rounded object-cover">
+                        <div class="flex-1">
+                            <p class="font-medium text-card-foreground" data-bind="item.name">BBS CH-R II</p>
+                            <p class="text-sm text-muted-foreground" data-bind="item.size">19x9.5 ET22</p>
+                        </div>
+                        <div class="text-right">
+                            <p class="font-semibold text-card-foreground" data-bind="item.price">£1,940</p>
+                            <p class="text-xs text-muted-foreground">Set of 4</p>
+                        </div>
+                    </div>
+                    <!-- @END_MAP )) -->
+                </div>
+
+                <div class="border-t border-border pt-4 mb-6">
+                    <div class="flex justify-between items-center text-lg font-semibold text-card-foreground">
+                        <span>Total</span>
+                        <span data-bind="basket.total">£1,940</span>
+                    </div>
+                </div>
+
+                <div class="space-y-3">
+                    <button class="w-full bg-primary hover:bg-primary/90 text-primary-foreground py-3 rounded-lg font-semibold transition-colors" data-event="click:requestQuote">
+                        Request Quote
+                    </button>
+                    <button class="w-full border border-border hover:bg-muted text-card-foreground py-3 rounded-lg font-medium transition-colors" data-event="click:continueshopping">
+                        Continue Shopping
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- @END_COMPONENT: BasketModal -->
+
+    <script>
+        (function() {
+            // Theme toggle functionality
+            const themeToggle = document.getElementById('theme-toggle');
+            const body = document.body;
+            
+            themeToggle?.addEventListener('click', function() {
+                body.classList.toggle('dark');
+                const isDark = body.classList.contains('dark');
+                this.innerHTML = isDark 
+                    ? '<span class="material-icons text-sm">light_mode</span><span>Light</span>'
+                    : '<span class="material-icons text-sm">dark_mode</span><span>Dark</span>';
+            });
+
+            // Mobile menu functionality
+            const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+            const mobileMenuClose = document.getElementById('mobile-menu-close');
+            const mobileNav = document.getElementById('mobile-nav');
+
+            mobileMenuToggle?.addEventListener('click', () => {
+                mobileNav.classList.add('open');
+            });
+
+            mobileMenuClose?.addEventListener('click', () => {
+                mobileNav.classList.remove('open');
+            });
+
+            // Filters drawer functionality
+            const filtersToggle = document.getElementById('filters-toggle');
+            const filtersClose = document.getElementById('filters-close');
+            const filtersDrawer = document.getElementById('filters-drawer');
+
+            filtersToggle?.addEventListener('click', () => {
+                filtersDrawer.classList.add('open');
+            });
+
+            filtersClose?.addEventListener('click', () => {
+                filtersDrawer.classList.remove('open');
+            });
+
+            // Basket modal functionality
+            const basketModal = document.getElementById('basket-modal');
+            const closeBasket = document.getElementById('close-basket');
+
+            document.querySelectorAll('[data-event*="openBasket"]').forEach(btn => {
+                btn.addEventListener('click', () => {
+                    basketModal.classList.remove('hidden');
+                });
+            });
+
+            closeBasket?.addEventListener('click', () => {
+                basketModal.classList.add('hidden');
+            });
+
+            // Close modals on outside click
+            basketModal?.addEventListener('click', (e) => {
+                if (e.target === basketModal) {
+                    basketModal.classList.add('hidden');
+                }
+            });
+
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start'
+                        });
+                    }
+                });
+            });
+
+            // TODO: Implement business logic for:
+            // - Product filtering and search
+            // - Vehicle fitment calculations
+            // - Shopping cart management
+            // - Form validation and submission
+            // - API calls for data fetching
+            // - State management with Zustand
+            // - React Query integration
+        })();
+    </script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+[
+  {
+    "id": "bbs",
+    "name": "BBS",
+    "description": "Premium German wheel manufacturer",
+    "logo": null
+  },
+  {
+    "id": "oz",
+    "name": "OZ Racing",
+    "description": "Italian racing heritage",
+    "logo": null
+  },
+  {
+    "id": "enkei",
+    "name": "Enkei",
+    "description": "Japanese performance wheels",
+    "logo": null
+  },
+  {
+    "id": "rays",
+    "name": "Rays",
+    "description": "JDM performance specialists",
+    "logo": null
+  },
+  {
+    "id": "vossen",
+    "name": "Vossen",
+    "description": "Luxury forged wheels",
+    "logo": null
+  },
+  {
+    "id": "hre",
+    "name": "HRE",
+    "description": "American forged excellence",
+    "logo": null
+  }
+]

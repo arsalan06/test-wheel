@@ -1,0 +1,142 @@
+Build a responsive ecommerce-style website using React 18 + Vite + TypeScript + Material UI (MUI v5). The site should be inspired by the structure and user journey of wheel retailers like wheelmania.co.uk (use generic placeholders—do not copy text or images).
+
+Tech & setup
+
+Tooling: Vite + React + TypeScript.
+
+UI: Material UI (MUI v5) + @mui/icons-material.
+
+State: React Query (for data fetching) + Zustand (light client state).
+
+Routing: React Router v6.
+
+Forms: React Hook Form + Zod.
+
+Charts: @mui/x-charts (for simple fitment/size distribution).
+
+Lint/format: ESLint + Prettier.
+
+Testing: Vitest + React Testing Library.
+
+Theme & layout
+
+Create a custom MUI theme with primary/secondary colors (automotive vibe), dark mode toggle, and responsive typography.
+
+App shell with <Header>, <Footer>, and a persistent <TopBar> for phone/location and a <BottomActions> on mobile (FAB for “Find My Wheels”).
+
+SEO-ready <Helmet> (react-helmet-async) per page.
+
+Pages
+
+Home
+
+Hero banner, USP chips (Price Match, Fast Fitment, Finance Available), featured wheel collections, brand marquee, testimonials carousel.
+
+Shop / Wheels Catalog
+
+Left filter drawer (brand, size, PCD, finish, price range, in-stock, vehicle make/model).
+
+Sort by: price, popularity, newest.
+
+Product grid cards (image, title, sizes, rating, price, “Add to Quote”).
+
+Wheel Detail
+
+Gallery, specs table (size, width, offset, PCD, CB), compatible vehicles, finishes, stock badges, CTA: “Add to Basket” + “Book Fitting”.
+
+Fitment Finder
+
+Stepper form: Make → Model → Year → Engine/Trim → Result list.
+
+Results page shows compatible wheels with badges (Direct Fit / Spacers Required).
+
+Services
+
+Tyres, balancing, alignment, refurbishment, booking CTA.
+
+Gallery
+
+Masonry grid of customer cars; filter by make/model and wheel series.
+
+About & Contact
+
+Map (embed placeholder), opening hours, contact form with validation, WhatsApp/Call buttons.
+
+Basket / Quote
+
+Minimal cart or “request a quote” flow with email capture and summary.
+
+Components (key)
+
+WheelCard, FiltersDrawer, PriceRangeSlider, VehiclePicker (dependent selects), StockBadge, FinanceBadge, TestimonialCard, BrandMarquee, ImageGallery, SpecTable, FAQAccordion.
+
+Global SnackbarProvider and ConfirmDialog.
+
+Data layer
+
+Provide mock JSON in /src/mocks for:
+
+brands.json, wheels.json (id, name, images[], finishes[], price, sizes[], pcd, offset range, cb, stock), fitments.json (make/model/year → allowed specs).
+
+Implement fake API with msw or simple async functions simulating latency.
+
+React Query for fetching, with caching and loading/error states.
+
+Accessibility & UX
+
+Keyboard focus rings, proper aria labels, semantic headings, color contrast.
+
+Skeleton loaders and optimistic updates for “Add to Basket/Quote”.
+
+Image lazy-loading.
+
+Performance
+
+Code splitting by route, MUI’s sx over heavy CSS, responsive images.
+
+Testing
+
+Unit tests for filters and vehicle selection logic.
+
+Component tests for WheelCard and FiltersDrawer.
+
+File structure
+src/
+  main.tsx
+  App.tsx
+  theme.ts
+  routes/
+    Home.tsx
+    Shop.tsx
+    WheelDetail.tsx
+    FitmentFinder.tsx
+    Services.tsx
+    Gallery.tsx
+    About.tsx
+    Contact.tsx
+    Basket.tsx
+  components/
+    Header.tsx
+    Footer.tsx
+    TopBar.tsx
+    BottomActions.tsx
+    WheelCard.tsx
+    FiltersDrawer.tsx
+    VehiclePicker.tsx
+    SpecTable.tsx
+    ImageGallery.tsx
+    BrandMarquee.tsx
+    TestimonialCard.tsx
+  store/
+    basket.ts
+    ui.ts
+  api/
+    wheels.ts
+    fitment.ts
+  mocks/
+    wheels.json
+    brands.json
+    fitments.json
+  hooks/
+    useThemeMode.ts
+    useQueryParams.ts
